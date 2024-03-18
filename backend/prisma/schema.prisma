@@ -11,7 +11,6 @@ model User {
   id              String       @id @default(uuid())
   email           String       @unique
   emailVerifiedAt DateTime?
-  name            String?
   password        String
   answers         UserAnswer[]
   tokens          Token[]
@@ -25,7 +24,7 @@ model Token {
   token   String    @unique
   expires DateTime
 
-  @@unique([userId, token, type])
+  @@unique([userId, type])
 }
 
 enum TokenType {
