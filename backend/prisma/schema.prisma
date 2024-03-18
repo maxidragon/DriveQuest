@@ -1,0 +1,61 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id              String       @id @default(uuid())
+  email           String       @unique
+  emailVerifiedAt DateTime?
+  name            String?
+  password        String
+  answers         UserAnswer[]
+  tokens          Token[]
+}
+
+model Token {
+  id      String    @id @default(cuid())
+  userId  String
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type    TokenType
+  token   String    @unique
+  expires DateTime
+
+  @@unique([userId, token, type])
+}
+
+enum TokenType {
+  VERIFICATION
+  RESET_PASSWORD
+}
+
+model Question {
+  id         String   @id @default(uuid())
+  text       String
+  assetName  String?
+  categories String[]
+  answers    Answer[]
+}
+
+model Answer {
+  id          String       @id @default(uuid())
+  text        String
+  isCorrect   Boolean
+  questionId  String
+  question    Question     @relation(fields: [questionId], references: [id])
+  userAnswers UserAnswer[]
+}
+
+model UserAnswer {
+  id        String   @id @default(uuid())
+  userId    String
+  answerId  String
+  user      User     @relation(fields: [userId], references: [id])
+  answer    Answer   @relation(fields: [answerId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
