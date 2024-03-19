@@ -21,5 +21,14 @@
   "allQuestions": "All questions",
   "takeATest": "Take a test",
   "logout": "Logout",
-  "hello": "Hello"
+  "hello": "Hello",
+  "category": "Category",
+  "search": "Search",
+  "question": "Question",
+  "attempts": "Attempts",
+  "randomQuestion": "Random question",
+  "loading": "Loading...",
+  "previous": "Previous",
+  "next": "Next",
+  "of": "of"
 }

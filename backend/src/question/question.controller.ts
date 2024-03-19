@@ -1,4 +1,12 @@
-import { Body, Controller, Get, Post, Query, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 import { QuestionService } from './question.service';
 import { GetUser } from '../auth/decorator/getUser.decorator';
@@ -26,13 +34,24 @@ export class QuestionController {
   }
 
   @Get('random')
-  async getRandomUnansweredQuestion(@Query('category') category: string, @GetUser() user: JwtAuthDto) {
-    return this.questionService.getRandomUnansweredQuestion(user.userId, category);
+  async getRandomUnansweredQuestion(
+    @Query('category') category: string,
+    @GetUser() user: JwtAuthDto,
+  ) {
+    return this.questionService.getRandomUnansweredQuestion(
+      user.userId,
+      category,
+    );
   }
 
   @Get('exam')
   async getRandomSet(@Query('category') category: string) {
     return this.questionService.getRandomSet(category);
+  }
+
+  @Get(':id')
+  async getQuestionById(@Param('id') id: string, @GetUser() user: JwtAuthDto) {
+    return this.questionService.getQuestionById(id, user.userId);
   }
 
   @Post('answer')

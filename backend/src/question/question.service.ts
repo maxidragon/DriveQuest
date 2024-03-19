@@ -26,20 +26,21 @@ export class QuestionService {
       take: 10,
       skip: (page - 1) * 10,
       where: whereParams,
-      include: {
+      select: {
+        id: true,
+        text: true,
         answers: {
           select: {
             id: true,
             text: true,
             isCorrect: true,
-          },
-          include: {
             userAnswers: {
               where: {
                 userId: userId,
               },
               select: {
                 id: true,
+                answerId: true,
               },
             },
           },
@@ -106,6 +107,34 @@ export class QuestionService {
             id: true,
             text: true,
             isCorrect: true,
+          },
+        },
+      },
+    });
+  }
+
+  async getQuestionById(questionId: string, userId: string) {
+    return this.prisma.question.findFirst({
+      where: {
+        id: questionId,
+      },
+      include: {
+        answers: {
+          select: {
+            id: true,
+            text: true,
+            isCorrect: true,
+          },
+          include: {
+            userAnswers: {
+              where: {
+                userId: userId,
+              },
+              select: {
+                id: true,
+                answerId: true,
+              },
+            },
           },
         },
       },

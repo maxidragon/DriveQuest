@@ -6,6 +6,7 @@ import {Toaster} from "@/components/ui/sonner.tsx";
 import Register from "@/pages/auth/register/register.tsx";
 import Verify from "@/pages/auth/verify/verify.tsx";
 import Layout from "@/layout/layout.tsx";
+import Questions from "@/pages/questions/questions.tsx";
 
 function App() {
     const router = createBrowserRouter([
@@ -29,6 +30,10 @@ function App() {
                     path: '',
                     element: <Home/>,
                 },
+                {
+                    path: 'questions',
+                    element: <Questions />,
+                }
             ],
         },
     ]);

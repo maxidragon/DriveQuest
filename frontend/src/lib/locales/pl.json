@@ -21,5 +21,14 @@
   "allQuestions": "Wszystkie pytania",
   "takeATest": "Egzamin",
   "logout": "Wyloguj się",
-  "hello": "Witaj"
+  "hello": "Witaj",
+  "category": "Kategoria",
+  "search": "Szukaj",
+  "question": "Pytanie",
+  "attempts": "Podejścia",
+  "randomQuestion": "Wylosuj pytanie",
+  "loading": "Ładowanie...",
+  "previous": "Poprzednia strona",
+  "next": "Następna strona",
+  "of": "z"
 }
