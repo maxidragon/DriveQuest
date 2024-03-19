@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import {Controller, Post, Body, HttpCode, HttpStatus} from '@nestjs/common';
 import { RegisterDto } from '../dto/register.dto';
 import { AuthService } from '../auth.service';
 
@@ -6,6 +6,7 @@ import { AuthService } from '../auth.service';
 export class RegisterController {
   constructor(private authService: AuthService) {}
 
+  @HttpCode(HttpStatus.OK)
   @Post()
   async register(@Body() dto: RegisterDto): Promise<object> {
     return this.authService.signup(dto);

@@ -29,13 +29,15 @@ export class AuthService {
     if (await this.isTaken(dto.email)) {
       throw new ForbiddenException('Credentials taken!');
     }
-    await this.prisma.user.create({
+
+    const user = await this.prisma.user.create({
       data: {
         email: dto.email,
         password: sha512(dto.password),
       },
     });
-    await this.sendVerificationEmail(dto.email);
+
+    await this.sendVerificationEmail(user.id);
 
     return { msg: 'Successfully registered a new account!' };
   }
@@ -69,7 +71,7 @@ export class AuthService {
       <html lang="en">
         <body>
           <h1>Verify your email</h1>
-          <p>Click <a href="http://localhost:3000/#/auth/verify/${token.token}">here</a> to verify your email.</p>
+          <p>Click <a href="${process.env.FRONTEND_URL}/auth/verify/${token.token}">here</a> to verify your email.</p>
         </body>
       </html>
     `;
@@ -101,8 +103,39 @@ export class AuthService {
     });
 
     return {
-      jwt: jwt,
-      info: await this.getUserPublicInfoById(user.id),
+      token: jwt,
+      userInfo: await this.getUserPublicInfoById(user.id),
+    };
+  }
+
+  async verifyEmail(token: string) {
+    const tokenFromDb = await this.prisma.token.findFirst({
+      where: {
+        token: token,
+        type: 'VERIFICATION',
+        expires: {
+          gt: new Date(),
+        },
+      },
+    });
+    if (!tokenFromDb) {
+      throw new HttpException('Invalid token', HttpStatus.BAD_REQUEST);
+    }
+    await this.prisma.user.update({
+      where: {
+        id: tokenFromDb.userId,
+      },
+      data: {
+        emailVerifiedAt: new Date(),
+      },
+    });
+    await this.prisma.token.delete({
+      where: {
+        token: token,
+      },
+    });
+    return {
+      message: 'Email verified',
     };
   }
 

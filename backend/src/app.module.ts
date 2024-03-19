@@ -16,6 +16,9 @@ import { MailerModule } from '@nestjs-modules/mailer';
             user: process.env.SMTP_USER,
             pass: process.env.SMTP_PASS,
           },
+          tls: {
+            rejectUnauthorized: false,
+          },
         },
         defaults: {
           from: `DriveQuest <${process.env.SMTP_USER}>`,
