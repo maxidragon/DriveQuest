@@ -3,6 +3,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {useEffect} from "react";
 import {verifyEmail} from "@/lib/auth.ts";
 import {toast} from "sonner";
+import {t} from "i18next";
 
 const Verify = () => {
     const {id} = useParams<{ id: string }>();
@@ -13,10 +14,10 @@ const Verify = () => {
         const verify = async () => {
             const status = await verifyEmail(id);
             if (status === 200) {
-                toast.success("Email verified successfully");
+                toast.success(t('emailVerifiedSuccessfully'));
                 navigate("/auth/login");
             } else {
-                toast.error("Something went wrong!");
+                toast.error(t('somethingWentWrong'));
             }
         }
         verify();
@@ -25,9 +26,9 @@ const Verify = () => {
         <div className="flex items-center justify-center h-screen">
             <Card className="mx-auto max-w-sm">
                 <CardHeader className="space-y-2 text-center">
-                    <CardTitle className="text-2xl font-bold">Email verification</CardTitle>
+                    <CardTitle className="text-2xl font-bold">{t('emailVerification')}</CardTitle>
                     <CardDescription>
-                        Verifying your email. Please wait...
+                        {t('verifyingEmail')}
                     </CardDescription>
                 </CardHeader>
             </Card>

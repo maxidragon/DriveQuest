@@ -5,6 +5,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {registerUser} from "@/lib/auth.ts";
 import {toast} from "sonner"
 import {Link, useNavigate} from "react-router-dom";
+import {t} from "i18next";
 
 const Register = () => {
     const navigate = useNavigate();
@@ -16,12 +17,12 @@ const Register = () => {
         const password = form.password.value;
         const repeatedPassword = form.password2.value;
         if (password !== repeatedPassword) {
-            toast.error("Passwords do not match!");
+            toast.error(t('passwordsDoNotMatch'));
             return;
         }
         const status = await registerUser(email, password);
         if (status === 200) {
-            toast.success("Registered successfully. Please check your email to verify your account.");
+            toast.success(t('registeredSuccessfully'));
             navigate("/auth/login");
         } else {
             toast.error("Something went wrong!");
@@ -31,30 +32,30 @@ const Register = () => {
         <div className="flex items-center justify-center h-screen">
             <Card className="mx-auto max-w-sm">
                 <CardHeader className="space-y-2 text-center">
-                    <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
-                    <Link to="/auth/login" className="text-blue-500">Already have an account?</Link>
+                    <CardTitle className="text-2xl font-bold">{t('createAnAccount')}</CardTitle>
+                    <Link to="/auth/login" className="text-blue-500">{t('alreadyHaveAnAccount')}</Link>
                     <CardDescription>
-                        Enter your email and password to create an account. We will send you verification email.
+                        {t('registerDescription')}
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit}>
                         <div className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="email">Email</Label>
+                                <Label htmlFor="email">{t('email')}</Label>
                                 <Input id="email" name="email" placeholder="john.doe@example.com" required
                                        type="email"/>
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="password">Password</Label>
+                                <Label htmlFor="password">{t('password')}</Label>
                                 <Input id="password" name="password" required type="password"/>
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="password">Repeat password</Label>
+                                <Label htmlFor="password">{t('repeatPassword')}</Label>
                                 <Input id="password2" name="password2" required type="password"/>
                             </div>
                             <Button className="w-full" type="submit">
-                                Create account
+                                {t('register')}
                             </Button>
                         </div>
                     </form>

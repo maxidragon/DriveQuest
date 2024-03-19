@@ -5,6 +5,7 @@ import Login from "@/pages/auth/login/login.tsx";
 import {Toaster} from "@/components/ui/sonner.tsx";
 import Register from "@/pages/auth/register/register.tsx";
 import Verify from "@/pages/auth/verify/verify.tsx";
+import Layout from "@/layout/layout.tsx";
 
 function App() {
     const router = createBrowserRouter([
@@ -22,7 +23,13 @@ function App() {
         },
         {
             path: '/',
-            element: <Home/>,
+            element: <Layout/>,
+            children: [
+                {
+                    path: '',
+                    element: <Home/>,
+                },
+            ],
         },
     ]);
     return (

@@ -5,6 +5,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {login} from "@/lib/auth.ts";
 import {toast} from "sonner"
 import {Link, useNavigate} from "react-router-dom";
+import {t} from "i18next";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -17,39 +18,41 @@ const Login = () => {
         const response = await login(email, password);
         if (response.status === 200) {
             if (response.data.token) {
-                toast.success("You have been successfully logged in");
+                toast.success(t('loginSuccess'));
                 navigate("/");
             } else {
-                toast.info("We have sent you an email with a link to verify your account.")
+                toast.info(t('verificationEmailSent'))
             }
         } else if (response.status === 403) {
-            toast.error("Wrong credentials!");
+            toast.error(t('wrongCredentials'));
         } else {
-            toast.error("Something went wrong!");
+            toast.error(t('somethingWentWrong'));
         }
     };
     return (
         <div className="flex items-center justify-center h-screen">
             <Card className="mx-auto max-w-sm">
                 <CardHeader className="space-y-2 text-center">
-                    <CardTitle className="text-2xl font-bold">Login</CardTitle>
-                        <Link to="/auth/register" className="text-blue-500">Don't have an account?</Link>
+                    <CardTitle className="text-2xl font-bold">{t('login')}</CardTitle>
+                    <Link to="/auth/register" className="text-blue-500">{t('dontHaveAccount')}</Link>
                     <CardDescription>
-                        Enter your email and password to login to your account</CardDescription>
+                        {t('loginDescription')}
+                    </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleSubmit}>
                         <div className="space-y-4">
                             <div className="space-y-2">
-                                <Label htmlFor="email">Email</Label>
-                                <Input id="email" name="email" placeholder="john.doe@example.com" required type="email"/>
+                                <Label htmlFor="email">{t('email')}</Label>
+                                <Input id="email" name="email" placeholder="john.doe@example.com" required
+                                       type="email"/>
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="password">Password</Label>
+                                <Label htmlFor="password">{t('password')}</Label>
                                 <Input id="password" name="password" required type="password"/>
                             </div>
                             <Button className="w-full" type="submit">
-                                Login
+                                {t('login')}
                             </Button>
                         </div>
                     </form>
