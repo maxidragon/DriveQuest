@@ -52,11 +52,28 @@ export class QuestionService {
   }
 
   async getRandomSet(category: string) {
-    return this.prisma.question.findMany({
-      take: 32,
+    const everyIdInTable = await this.prisma.question.findMany({
+      select: { id: true },
       where: {
         categories: {
           has: category,
+        },
+      },
+    });
+    const idArray = everyIdInTable.map((element) => element.id);
+    const questionsIds = [];
+    for (let i = 0; i < 32; i++) {
+      const randomIndex = Math.floor(Math.random() * idArray.length);
+      const randomIdFromTable = idArray[randomIndex];
+      if (!questionsIds.includes(randomIdFromTable)) {
+        questionsIds.push(randomIdFromTable);
+      }
+    }
+    return this.prisma.question.findMany({
+      take: 32,
+      where: {
+        id: {
+          in: questionsIds,
         },
       },
       skip: Math.floor(Math.random() * 100),

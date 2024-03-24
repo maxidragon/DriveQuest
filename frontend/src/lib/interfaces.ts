@@ -1,6 +1,7 @@
 export interface Question {
     id: string;
     text: string;
+    assetName?: string;
     answers: Answer[];
 }
 

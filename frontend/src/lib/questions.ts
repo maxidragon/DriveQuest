@@ -17,3 +17,8 @@ export const calculateAttempts = (answers: Answer[]) => {
     const allAnswers = userAnswers.length;
     return `${correctAnswers}/${allAnswers}`;
 };
+
+export const getRandomQuestion = async (category: string) => {
+    const response = await backendRequest(`question/random?category=${category}`, "GET", true);
+    return await response.json();
+};

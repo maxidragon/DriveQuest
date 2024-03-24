@@ -9,9 +9,10 @@ import {Question} from "@/lib/interfaces.ts";
 import {calculateAttempts, getQuestions} from "@/lib/questions.ts";
 import {calculateTotalPages} from "@/lib/utils.ts";
 import {Button} from "@/components/ui/button.tsx";
-
+import {useNavigate} from "react-router-dom";
 
 const Questions = () => {
+    const navigate = useNavigate();
     const [category, setCategory] = useState<string>("B");
     const [questions, setQuestions] = useState<Question[]>([]);
     const [page, setPage] = useState<number>(1);
@@ -55,7 +56,9 @@ const Questions = () => {
             <div className="flex justify-between">
                 <div className="flex gap-2 items-center">
                     <Input placeholder={t('search')} onChange={handleSearch} value={search}/>
-                    <Button variant="default">{t('randomQuestion')}</Button>
+                    <Button variant="default" onClick={() => navigate(`/questions/random/${category}`)}>
+                        {t('randomQuestion')}
+                    </Button>
                 </div>
                 <div className="flex gap-2 items-center">
                     <Label>{t('category')}</Label>
