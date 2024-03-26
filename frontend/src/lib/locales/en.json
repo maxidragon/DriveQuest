@@ -30,5 +30,9 @@
   "loading": "Loading...",
   "previous": "Previous",
   "next": "Next",
-  "of": "of"
+  "of": "of",
+  "correct": "Correct!",
+  "incorrect": "Incorrect!",
+  "correctAnswer": "Correct answer is",
+  "nextQuestion": "Next question"
 }

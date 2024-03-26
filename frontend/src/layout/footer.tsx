@@ -3,7 +3,7 @@ import {Button} from "@/components/ui/button.tsx";
 
 const Footer = () => {
     return (
-        <div className="bg-gray-800 p-4 flex items-center w-full fixed bottom-0">
+        <div className="bg-gray-800 p-4 flex items-center w-full bottom-0">
             <a href="https://github.com/maxidragon/DriveQuest" target="_blank">
                 <Button variant="ghost">
                     <GitHubLogoIcon className="w-8 h-8 text-white hover:text-gray-400"/>

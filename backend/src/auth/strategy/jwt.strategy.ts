@@ -15,7 +15,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   }
 
   async validate(jwtAuthDto: JwtAuthDto): Promise<any> {
-    console.log('validation successful, jwtAuthDto: ', jwtAuthDto);
     return jwtAuthDto;
   }
 }
