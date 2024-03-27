@@ -22,3 +22,8 @@ export const getRandomQuestion = async (category: string) => {
     const response = await backendRequest(`question/random?category=${category}`, "GET", true);
     return await response.json();
 };
+
+export const getQuestionById = async (id: string) => {
+    const response = await backendRequest(`question/${id}`, "GET", true);
+    return await response.json();
+};

@@ -50,7 +50,6 @@ const Questions = () => {
     }, [category, page]);
 
 
-
     return (
         <div className="flex flex-col">
             <div className="flex justify-between">
@@ -85,7 +84,7 @@ const Questions = () => {
                 </TableHeader>
                 <TableBody>
                     {questions.map((question) => (
-                        <TableRow key={question.id}>
+                        <TableRow key={question.id} onClick={() => navigate(`/questions/${question.id}`)} className="cursor-pointer">
                             <TableCell>{question.text}</TableCell>
                             <TableCell>{calculateAttempts(question.answers)}</TableCell>
                         </TableRow>

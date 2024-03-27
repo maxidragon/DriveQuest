@@ -101,22 +101,32 @@ export class QuestionService {
         },
       },
       select: {
-        answerId: true,
-      },
-    });
-    const answeredQuestionIds = answeredQuestions.map((a) => a.answerId);
-    return this.prisma.question.findFirst({
-      where: {
-        answers: {
-          none: {
-            id: {
-              in: answeredQuestionIds,
-            },
+        answer: {
+          select: {
+            questionId: true,
           },
         },
+      },
+    });
+    const answeredQuestionIds = answeredQuestions.map((a) => a.answer.questionId);
+    const allQuestions = await this.prisma.question.findMany({
+      select: {
+        id: true,
+      },
+      where: {
         categories: {
           has: category,
         },
+        id: {
+          notIn: answeredQuestionIds,
+        },
+      },
+    });
+    const allQuestionIds = allQuestions.map((q) => q.id);
+    const randomIndex = Math.floor(Math.random() * allQuestionIds.length);
+    return this.prisma.question.findFirst({
+      where: {
+        id: allQuestionIds[randomIndex],
       },
       include: {
         answers: {
@@ -135,14 +145,15 @@ export class QuestionService {
       where: {
         id: questionId,
       },
-      include: {
+      select: {
+        id: true,
+        assetName: true,
+        text: true,
         answers: {
           select: {
             id: true,
             text: true,
             isCorrect: true,
-          },
-          include: {
             userAnswers: {
               where: {
                 userId: userId,

@@ -8,6 +8,7 @@ import Verify from "@/pages/auth/verify/verify.tsx";
 import Layout from "@/layout/layout.tsx";
 import Questions from "@/pages/questions/questions.tsx";
 import RandomQuestion from "@/pages/random-question/random-question.tsx";
+import Question from "@/pages/question/question.tsx";
 
 function App() {
     const router = createBrowserRouter([
@@ -38,6 +39,10 @@ function App() {
                 {
                     path: 'questions/random/:category',
                     element: <RandomQuestion/>,
+                },
+                {
+                    path: 'questions/:id',
+                    element: <Question/>,
                 }
             ],
         },

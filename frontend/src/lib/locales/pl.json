@@ -34,5 +34,6 @@
   "correct": "Poprawna odpowiedź!",
   "incorrect": "Niepoprawna odpowiedź!",
   "correctAnswer": "Poprawna odpowiedź to",
-  "nextQuestion": "Następne pytanie"
+  "nextQuestion": "Następne pytanie",
+  "yourAnswers": "Twoje odpowiedzi"
 }
