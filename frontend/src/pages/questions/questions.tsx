@@ -1,3 +1,5 @@
+import {categoryAtom} from "@/lib/atoms.ts";
+import {useAtom} from "jotai";
 import {ChangeEvent, useEffect, useState} from "react";
 import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 import {t} from "i18next";
@@ -13,7 +15,7 @@ import {useNavigate} from "react-router-dom";
 
 const Questions = () => {
     const navigate = useNavigate();
-    const [category, setCategory] = useState<string>("B");
+    const [category, setCategory] = useAtom(categoryAtom);
     const [questions, setQuestions] = useState<Question[]>([]);
     const [page, setPage] = useState<number>(1);
     const [search, setSearch] = useState<string>("");
@@ -55,7 +57,7 @@ const Questions = () => {
             <div className="flex justify-between">
                 <div className="flex gap-2 items-center">
                     <Input placeholder={t('search')} onChange={handleSearch} value={search}/>
-                    <Button variant="default" onClick={() => navigate(`/questions/random/${category}`)}>
+                    <Button variant="default" onClick={() => navigate(`/questions/random/`)}>
                         {t('randomQuestion')}
                     </Button>
                 </div>

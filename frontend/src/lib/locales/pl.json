@@ -35,5 +35,8 @@
   "incorrect": "Niepoprawna odpowiedź!",
   "correctAnswer": "Poprawna odpowiedź to",
   "nextQuestion": "Następne pytanie",
-  "yourAnswers": "Twoje odpowiedzi"
+  "yourAnswers": "Twoje odpowiedzi",
+  "timeLeft": "Pozostały czas",
+  "examFinished": "Egzamin zakończony",
+  "results": "Wynik"
 }

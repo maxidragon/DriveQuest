@@ -35,5 +35,8 @@
   "incorrect": "Incorrect!",
   "correctAnswer": "Correct answer is",
   "nextQuestion": "Next question",
-  "yourAnswers": "Your answers"
+  "yourAnswers": "Your answers",
+  "timeLeft": "Time left",
+  "examFinished": "Exam finished",
+  "result": "Result"
 }

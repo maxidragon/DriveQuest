@@ -1,15 +1,16 @@
-import {useCallback, useEffect, useState} from "react";
+import QuestionCard from "@/components/question-card.tsx";
+import {Alert} from "@/components/ui/alert.tsx";
+import {Button} from "@/components/ui/button.tsx";
+import {submitAnswer} from "@/lib/answers.ts";
+import {categoryAtom} from "@/lib/atoms.ts";
 import {Question} from "@/lib/interfaces.ts";
 import {getRandomQuestion} from "@/lib/questions.ts";
-import {useParams} from "react-router-dom";
-import QuestionCard from "@/components/question-card.tsx";
-import {submitAnswer} from "@/lib/answers.ts";
-import {Alert} from "@/components/ui/alert.tsx";
 import {t} from "i18next";
-import {Button} from "@/components/ui/button.tsx";
+import {useAtomValue} from "jotai";
+import {useCallback, useEffect, useState} from "react";
 
 const RandomQuestion = () => {
-    const {category} = useParams<{ category: string }>();
+    const category = useAtomValue(categoryAtom);
     const [question, setQuestion] = useState<Question | null>(null);
     const [isCorrect, setIsCorrect] = useState<number>(-1);
 

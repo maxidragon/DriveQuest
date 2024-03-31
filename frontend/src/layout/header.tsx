@@ -19,7 +19,7 @@ const Header = () => {
                         <Button variant="outline" onClick={() => navigate("/questions")}>
                             {t('allQuestions')}
                         </Button>
-                        <Button variant="outline" onClick={() => navigate("/test")}>
+                        <Button variant="outline" onClick={() => navigate("/exam")}>
                             {t('takeATest')}
                         </Button>
                     </>

@@ -19,4 +19,10 @@ export const getAssetType = (assetName: string) => {
         return "image";
     }
     return "other";
+};
+
+export const formatSeconds = (duration: number) => {
+    const minutes = Math.floor(duration / 60);
+    const seconds = duration % 60;
+    return `${minutes}:${seconds}`;
 }

@@ -10,10 +10,12 @@ export interface Answer {
     text: string;
     isCorrect: boolean;
     userAnswers: UserAnswer[];
+    question?: Question;
 }
 
 export interface UserAnswer {
     id: string;
     userId: string;
     answerId: string;
+    answer?: Answer;
 }

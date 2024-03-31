@@ -33,33 +33,33 @@ async function main() {
         });
       } else if (row[4] === 'A') {
         answers.push({
-          text: row[2],
+          text: row[1],
           isCorrect: true,
         });
         answers.push({
-          text: row[3],
+          text: row[2],
           isCorrect: false,
         });
         answers.push({
-          text: row[4],
+          text: row[3],
           isCorrect: false,
         });
       } else if (row[4] === 'B') {
         answers.push({
-          text: row[3],
+          text: row[2],
           isCorrect: true,
         });
         answers.push({
-          text: row[2],
+          text: row[3],
           isCorrect: false,
         });
         answers.push({
-          text: row[4],
+          text: row[1],
           isCorrect: false,
         });
       } else if (row[4] === 'C') {
         answers.push({
-          text: row[4],
+          text: row[3],
           isCorrect: true,
         });
         answers.push({
@@ -67,7 +67,7 @@ async function main() {
           isCorrect: false,
         });
         answers.push({
-          text: row[3],
+          text: row[1],
           isCorrect: false,
         });
       }

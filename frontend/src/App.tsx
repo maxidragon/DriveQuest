@@ -1,3 +1,4 @@
+import Exam from "@/pages/exam/exam.tsx";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Home from "@/pages/home/home.tsx";
 import {ThemeProvider} from "@/providers/theme-provider.tsx";
@@ -37,12 +38,16 @@ function App() {
                     element: <Questions />,
                 },
                 {
-                    path: 'questions/random/:category',
+                    path: 'questions/random',
                     element: <RandomQuestion/>,
                 },
                 {
                     path: 'questions/:id',
                     element: <Question/>,
+                },
+                {
+                    path: "exam",
+                    element: <Exam />,
                 }
             ],
         },

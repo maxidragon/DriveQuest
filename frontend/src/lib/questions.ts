@@ -1,5 +1,5 @@
 import {backendRequest} from "@/lib/request.ts";
-import {Answer} from "@/lib/interfaces.ts";
+import {Answer, UserAnswer} from "@/lib/interfaces.ts";
 
 export const getQuestions = async (page: number, category: string, search?: string) => {
     let url = `question?page=${page}&category=${category}`;
@@ -26,4 +26,14 @@ export const getRandomQuestion = async (category: string) => {
 export const getQuestionById = async (id: string) => {
     const response = await backendRequest(`question/${id}`, "GET", true);
     return await response.json();
+};
+
+export const getExam = async (category: string) => {
+    const response = await backendRequest(`question/exam?category=${category}`, "GET", true);
+    return await response.json();
+};
+
+export const calculateExamResults = (userAnswers: UserAnswer[]) => {
+    const correctAnswers = userAnswers.filter((userAnswer) => userAnswer.answer?.isCorrect).length;
+    return `${correctAnswers}/${userAnswers.length}`;
 };

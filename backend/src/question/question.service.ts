@@ -47,7 +47,9 @@ export class QuestionService {
         },
       },
     });
-    const count = await this.prisma.question.count();
+    const count = await this.prisma.question.count({
+      where: whereParams,
+    });
     return { questions, count };
   }
 
@@ -70,13 +72,11 @@ export class QuestionService {
       }
     }
     return this.prisma.question.findMany({
-      take: 32,
       where: {
         id: {
           in: questionsIds,
         },
       },
-      skip: Math.floor(Math.random() * 100),
       include: {
         answers: {
           select: {
@@ -108,7 +108,9 @@ export class QuestionService {
         },
       },
     });
-    const answeredQuestionIds = answeredQuestions.map((a) => a.answer.questionId);
+    const answeredQuestionIds = answeredQuestions.map(
+      (a) => a.answer.questionId,
+    );
     const allQuestions = await this.prisma.question.findMany({
       select: {
         id: true,
@@ -174,6 +176,13 @@ export class QuestionService {
       data: {
         userId,
         answerId,
+      },
+      include: {
+        answer: {
+          include: {
+            question: true,
+          },
+        },
       },
     });
   }
