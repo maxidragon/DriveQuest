@@ -39,7 +39,9 @@ jobs:
       working-directory: ./backend
     - name: Install frontend dependencies
       run: npm install
-      working-directory: frontend
+    - name: Crreate .env
+      run: echo "${{ secrets.FRONTEND_ENV }}" > .env
+      working-directory: ./frontend
     - name: Build
       run: npm run build
-      working-directory: 'frontend'
+      working-directory: ./frontend
