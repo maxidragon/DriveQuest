@@ -30,6 +30,7 @@ const Questions = () => {
 
     const handleCategoryChange = async (categoryParam: string) => {
         setCategory(categoryParam);
+        localStorage.setItem("drive-quest-category", categoryParam);
         setPage(1);
         setSearch("");
         await fetchData(categoryParam, 1);
