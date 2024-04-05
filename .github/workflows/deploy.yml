@@ -35,7 +35,7 @@ jobs:
       run: npm run build
       working-directory: ./backend
     - name: Restart service
-      run: pm2 restart DriveQuestBackend || pm2 start dist/src/main.js --name DriveQuestBackend
+      run: pm2 restart DriveQuestBackend -s || pm2 start dist/src/main.js --name DriveQuestBackend -s
       working-directory: ./backend
     - name: Install frontend dependencies
       run: npm install
