@@ -82,6 +82,7 @@ export class QuestionService {
           select: {
             id: true,
             text: true,
+            isCorrect: true,
           },
         },
       },

@@ -10,7 +10,7 @@ const QuestionAsset = ({question}: { question: Question }) => {
         return null;
     }
     if (assetType === "image") {
-        return <img src={`${FILES_URL}/${question.assetName}`} alt="Question asset" className="w-full h-auto"/>;
+        return <div><img src={`${FILES_URL}/${question.assetName}`} alt="Question asset"/></div>;
     } else if (assetType === "video") {
         return (
             <ReactPlayer

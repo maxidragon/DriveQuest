@@ -6,9 +6,10 @@ interface QuestionCardProps {
     question: Question;
     onAnswerClick: (answerId: string) => void;
 }
-const QuestionCard = ({ question, onAnswerClick }: QuestionCardProps) => {
+
+const QuestionCard = ({question, onAnswerClick}: QuestionCardProps) => {
     return (
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 items-center">
             <h1>{question.text}</h1>
             <QuestionAsset question={question}/>
             <div className="flex gap-2 items-center justify-center">

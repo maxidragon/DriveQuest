@@ -1,3 +1,4 @@
+import AnsweredQuestionCard from "@/components/answered-question-card.tsx";
 import QuestionCard from "@/components/question-card.tsx";
 import {submitAnswer} from "@/lib/answers.ts";
 import {categoryAtom} from "@/lib/atoms.ts";
@@ -37,6 +38,7 @@ const Exam = () => {
             setCurrentQuestionIndex(currentQuestionIndex + 1);
         } else {
             setIsFinished(true);
+            console.log([...userAnswers, data]);
             const calculatedResult = calculateExamResults(userAnswers);
             setResult(calculatedResult);
         }
@@ -47,16 +49,21 @@ const Exam = () => {
 
     if (isFinished) {
         return (
-            <div>
+            <div className="text-center text-2xl">
                 <div>{t('examFinished')}</div>
                 <div>{t('result')}: {result}</div>
+                <div className="flex flex-col gap-5">
+                {userAnswers.filter((userAnswer) => !userAnswer.answer?.isCorrect).map((userAnswer, index) => (
+                   <AnsweredQuestionCard key={index} userAnswer={userAnswer} questions={questions}/>
+                ))}
+                </div>
             </div>
         );
     }
 
     return (
         <div>
-            <div>{t('timeLeft')}: {formatSeconds(timeLeft)}</div>
+            <div>{t('timeLeft')}: {formatSeconds(timeLeft)} {currentQuestionIndex + 1}/32</div>
             <div className="flex flex-col gap-4 items-center text-center">
                 <QuestionCard question={questions[currentQuestionIndex]} onAnswerClick={handleAnswer}/>
             </div>

@@ -35,5 +35,5 @@ export const getExam = async (category: string) => {
 
 export const calculateExamResults = (userAnswers: UserAnswer[]) => {
     const correctAnswers = userAnswers.filter((userAnswer) => userAnswer.answer?.isCorrect).length;
-    return `${correctAnswers}/${userAnswers.length}`;
+    return `${correctAnswers}/32`;
 };

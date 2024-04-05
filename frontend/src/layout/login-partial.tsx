@@ -12,7 +12,7 @@ const LoginPartial = () => {
         <div>
             {isLoggedIn ? (
                 <div className="flex items-center gap-2">
-                    <p>{t('hello')} {userInfo?.email}</p>
+                    <p className="hidden md:block">{t('hello')} {userInfo?.email}</p>
                     <Button variant="default" onClick={() => {
                         logout();
                         navigate("/");
