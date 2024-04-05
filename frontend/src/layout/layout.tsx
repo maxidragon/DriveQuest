@@ -1,12 +1,13 @@
-import {Navbar} from "@/layout/navbar.tsx";
-import {Outlet} from "react-router-dom";
+import { Outlet } from "react-router-dom";
+
+import { Navbar } from "@/layout/navbar.tsx";
 
 const Layout = () => {
     return (
         <div>
             <Navbar />
             <div className="text-white p-4 w-full">
-                <Outlet/>
+                <Outlet />
             </div>
         </div>
     );

@@ -1,7 +1,8 @@
-import {Button} from "@/components/ui/button.tsx";
-import {isUserLoggedIn, logout} from "@/lib/auth.ts";
-import {t} from "i18next";
-import {useNavigate} from "react-router-dom";
+import { t } from "i18next";
+import { useNavigate } from "react-router-dom";
+
+import { Button } from "@/components/ui/button.tsx";
+import { isUserLoggedIn, logout } from "@/lib/auth.ts";
 
 const LoginPartial = () => {
     const isLoggedIn = isUserLoggedIn();
@@ -11,20 +12,29 @@ const LoginPartial = () => {
         <div>
             {isLoggedIn ? (
                 <div className="flex items-center gap-2">
-                    <Button variant="default" onClick={() => {
-                        logout();
-                        navigate("/");
-                    }}>
-                        {t('logout')}
+                    <Button
+                        variant="default"
+                        onClick={() => {
+                            logout();
+                            navigate("/");
+                        }}
+                    >
+                        {t("logout")}
                     </Button>
                 </div>
             ) : (
                 <div className="flex gap-2">
-                    <Button variant="default" onClick={() => navigate("/auth/login")}>
-                        {t('login')}
+                    <Button
+                        variant="default"
+                        onClick={() => navigate("/auth/login")}
+                    >
+                        {t("login")}
                     </Button>
-                    <Button variant="default" onClick={() => navigate('/auth/register')}>
-                        {t('register')}
+                    <Button
+                        variant="default"
+                        onClick={() => navigate("/auth/register")}
+                    >
+                        {t("register")}
                     </Button>
                 </div>
             )}

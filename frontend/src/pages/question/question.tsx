@@ -1,13 +1,14 @@
-import {useCallback, useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
-import {calculateAttempts, getQuestionById} from "@/lib/questions.ts";
-import {Question as QuestionType} from "@/lib/interfaces.ts";
-import {t} from "i18next";
-import {cn} from "@/lib/utils.ts";
+import { t } from "i18next";
+import { useCallback, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import QuestionAsset from "@/components/question-asset.tsx";
+import { Question as QuestionType } from "@/lib/interfaces.ts";
+import { calculateAttempts, getQuestionById } from "@/lib/questions.ts";
+import { cn } from "@/lib/utils.ts";
 
 const Question = () => {
-    const {id} = useParams<{ id: string }>();
+    const { id } = useParams<{ id: string }>();
     const [question, setQuestion] = useState<QuestionType | null>(null);
 
     const fetchData = useCallback(async () => {
@@ -27,28 +28,32 @@ const Question = () => {
     return (
         <div className="flex flex-col gap-4 items-center text-center">
             <div>
-                {t('question')}: {question.text}
+                {t("question")}: {question.text}
             </div>
             <div className="flex flex-col gap-2">
-                {t('answers')}:
+                {t("answers")}:
                 <div className="flex gap-2">
                     {question.answers.map((answer) => (
-                        <div key={answer.id}
-                             className={cn("p-2 rounded-md text-black", answer.isCorrect ? "bg-green-500" : "bg-red-500")}>
+                        <div
+                            key={answer.id}
+                            className={cn(
+                                "p-2 rounded-md text-black",
+                                answer.isCorrect ? "bg-green-500" : "bg-red-500"
+                            )}
+                        >
                             {answer.text}
                         </div>
                     ))}
                 </div>
             </div>
             <div className="flex flex-col gap-4">
-                <QuestionAsset question={question}/>
+                <QuestionAsset question={question} />
             </div>
             <div className="flex gap-2">
-                {t('yourAnswers')}: {calculateAttempts(question.answers)}
+                {t("yourAnswers")}: {calculateAttempts(question.answers)}
             </div>
-
         </div>
-    )
+    );
 };
 
 export default Question;

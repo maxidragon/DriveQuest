@@ -1,29 +1,18 @@
-import {backendRequest} from "./request";
+import { backendRequest } from "./request";
 
 const TOKEN_NAME = "drivequest-token";
 const USER_INFO_NAME = "drivequest-userInfo";
 
-
-export const registerUser = async (
-    email: string,
-    password: string,
-) => {
-    try {
-        const body = {
-            email: email,
-            password: password,
-        };
-        const response = await backendRequest("auth/register", "POST", false, body);
-        return response.status;
-    } catch (error) {
-        console.log(error);
-    }
+export const registerUser = async (email: string, password: string) => {
+    const body = {
+        email: email,
+        password: password,
+    };
+    const response = await backendRequest("auth/register", "POST", false, body);
+    return response.status;
 };
 
-export const login = async (
-    email: string,
-    password: string
-)=> {
+export const login = async (email: string, password: string) => {
     const response = await backendRequest("auth/login", "POST", false, {
         email: email,
         password: password,
@@ -40,7 +29,9 @@ export const login = async (
 };
 
 export const verifyEmail = async (token: string) => {
-    const response = await backendRequest("auth/verify", "POST", false, { token: token });
+    const response = await backendRequest("auth/verify", "POST", false, {
+        token: token,
+    });
     return response.status;
 };
 

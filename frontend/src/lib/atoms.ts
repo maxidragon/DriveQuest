@@ -1,5 +1,7 @@
-import {atom} from "jotai";
+import { atom } from "jotai";
 
-const categoryAtom = atom<string>(localStorage.getItem("drive-quest-category") || "B");
+const categoryAtom = atom<string>(
+    localStorage.getItem("drive-quest-category") || "B"
+);
 
-export {categoryAtom};
+export { categoryAtom };

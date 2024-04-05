@@ -1,7 +1,8 @@
-import {Button} from "@/components/ui/button.tsx";
-import {GitHubLogoIcon} from "@radix-ui/react-icons";
-import {t} from "i18next";
-import {useNavigate} from "react-router-dom";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { t } from "i18next";
+import { useNavigate } from "react-router-dom";
+
+import { Button } from "@/components/ui/button.tsx";
 
 const Home = () => {
     const navigate = useNavigate();
@@ -12,28 +13,30 @@ const Home = () => {
                 <div className="text-center lg:text-start space-y-6">
                     <main className="text-5xl md:text-6xl font-bold">
                         <h1 className="inline">
-            <span className="inline bg-gradient-to-r from-[#F596D3]  to-[#D247BF] text-transparent bg-clip-text">
-              {t('home1')}
-            </span>{" "}
-                            {t('home2')}
+                            <span className="inline bg-gradient-to-r from-[#F596D3]  to-[#D247BF] text-transparent bg-clip-text">
+                                {t("home1")}
+                            </span>{" "}
+                            {t("home2")}
                         </h1>{" "}
-                        {t('home3')} {" "}
+                        {t("home3")}{" "}
                         <h2 className="inline">
-            <span
-                className="inline bg-gradient-to-r from-[#61DAFB] via-[#1fc0f1] to-[#03a3d7] text-transparent bg-clip-text">
-                {t('home4')}
-            </span>{" "}
-                            {t('home5')}
+                            <span className="inline bg-gradient-to-r from-[#61DAFB] via-[#1fc0f1] to-[#03a3d7] text-transparent bg-clip-text">
+                                {t("home4")}
+                            </span>{" "}
+                            {t("home5")}
                         </h2>
                     </main>
 
                     <p className="text-xl text-muted-foreground md:w-10/12 mx-auto lg:mx-0">
-                        {t('about')}
+                        {t("about")}
                     </p>
 
                     <div className="space-y-4 md:space-y-0 md:space-x-4 flex flex-col md:flex-row">
-                        <Button className="w-full md:w-1/3" onClick={() => navigate('/auth/register')}>
-                            {t('getStarted')}
+                        <Button
+                            className="w-full md:w-1/3"
+                            onClick={() => navigate("/auth/register")}
+                        >
+                            {t("getStarted")}
                         </Button>
                         <a
                             href="https://github.com/maxidragon/DriveQuest"
@@ -41,16 +44,15 @@ const Home = () => {
                         >
                             <Button variant="secondary" className="w-full">
                                 GitHub
-                                <GitHubLogoIcon className="ml-2 w-5 h-5"/>
+                                <GitHubLogoIcon className="ml-2 w-5 h-5" />
                             </Button>
                         </a>
                     </div>
                 </div>
                 <div className="shadow"></div>
             </section>
-
         </div>
-    )
+    );
 };
 
 export default Home;

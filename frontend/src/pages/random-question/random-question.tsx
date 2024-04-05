@@ -1,13 +1,14 @@
+import { t } from "i18next";
+import { useAtomValue } from "jotai";
+import { useCallback, useEffect, useState } from "react";
+
 import QuestionCard from "@/components/question-card.tsx";
-import {Alert} from "@/components/ui/alert.tsx";
-import {Button} from "@/components/ui/button.tsx";
-import {submitAnswer} from "@/lib/answers.ts";
-import {categoryAtom} from "@/lib/atoms.ts";
-import {Question} from "@/lib/interfaces.ts";
-import {getRandomQuestion} from "@/lib/questions.ts";
-import {t} from "i18next";
-import {useAtomValue} from "jotai";
-import {useCallback, useEffect, useState} from "react";
+import { Alert } from "@/components/ui/alert.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import { submitAnswer } from "@/lib/answers.ts";
+import { categoryAtom } from "@/lib/atoms.ts";
+import { Question } from "@/lib/interfaces.ts";
+import { getRandomQuestion } from "@/lib/questions.ts";
 
 const RandomQuestion = () => {
     const category = useAtomValue(categoryAtom);
@@ -23,7 +24,9 @@ const RandomQuestion = () => {
 
     const handleSubmitAnswer = async (id: string) => {
         await submitAnswer(id);
-        const isSubmittedAnswerCorrect = question?.answers.find(a => a.id === id)?.isCorrect;
+        const isSubmittedAnswerCorrect = question?.answers.find(
+            (a) => a.id === id
+        )?.isCorrect;
         setIsCorrect(isSubmittedAnswerCorrect ? 1 : 0);
     };
 
@@ -37,19 +40,24 @@ const RandomQuestion = () => {
 
     return (
         <div className="flex flex-col gap-4 items-center text-center">
-            <QuestionCard question={question} onAnswerClick={handleSubmitAnswer}/>
-            {isCorrect >= 0 && (isCorrect === 1 ? (
-                <Alert variant="default">
-                    {t('correct')}
-                </Alert>
-            ) : (
-                <Alert variant="destructive">
-                    {t('incorrect')} {t('correctAnswer')}: {question.answers.find(a => a.isCorrect)?.text}
-                </Alert>
-            ))}
-            <Button onClick={fetchData} variant="secondary">{t('nextQuestion')}</Button>
+            <QuestionCard
+                question={question}
+                onAnswerClick={handleSubmitAnswer}
+            />
+            {isCorrect >= 0 &&
+                (isCorrect === 1 ? (
+                    <Alert variant="default">{t("correct")}</Alert>
+                ) : (
+                    <Alert variant="destructive">
+                        {t("incorrect")} {t("correctAnswer")}:{" "}
+                        {question.answers.find((a) => a.isCorrect)?.text}
+                    </Alert>
+                ))}
+            <Button onClick={fetchData} variant="secondary">
+                {t("nextQuestion")}
+            </Button>
         </div>
-    )
+    );
 };
 
 export default RandomQuestion;
