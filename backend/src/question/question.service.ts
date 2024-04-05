@@ -71,7 +71,7 @@ export class QuestionService {
         questionsIds.push(randomIdFromTable);
       }
     }
-    return this.prisma.question.findMany({
+    const questions = await this.prisma.question.findMany({
       where: {
         id: {
           in: questionsIds,
@@ -86,10 +86,14 @@ export class QuestionService {
         },
       },
     });
+    return questions.map((question) => ({
+      ...question,
+      answers: question.answers.sort(() => Math.random() - 0.5),
+    }));
   }
 
   async getRandomUnansweredQuestion(userId: string, category: string) {
-    const answeredQuestions = await this.prisma.userAnswer.findMany({
+    const answeredQuestions = await this.prisma.userAnswer.fireturnndMany({
       where: {
         userId,
         answer: {
@@ -126,7 +130,7 @@ export class QuestionService {
     });
     const allQuestionIds = allQuestions.map((q) => q.id);
     const randomIndex = Math.floor(Math.random() * allQuestionIds.length);
-    return this.prisma.question.findFirst({
+    const question = await this.prisma.question.findFirst({
       where: {
         id: allQuestionIds[randomIndex],
       },
@@ -140,6 +144,11 @@ export class QuestionService {
         },
       },
     });
+    const randomAnswersOrder = question.answers.sort(() => Math.random() - 0.5);
+    return {
+      ...question,
+      answers: randomAnswersOrder,
+    };
   }
 
   async getQuestionById(questionId: string, userId: string) {
