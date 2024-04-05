@@ -55,14 +55,14 @@ const Questions = () => {
 
     return (
         <div className="flex flex-col">
-            <div className="flex justify-between">
-                <div className="flex gap-2 items-center">
+            <div className="md:flex md:justify-between flex-col md:flex-row">
+                <div className="flex gap-2 md:flex-row flex-col md:items-center justify-start">
                     <Input placeholder={t('search')} onChange={handleSearch} value={search}/>
                     <Button variant="default" onClick={() => navigate(`/questions/random/`)}>
                         {t('randomQuestion')}
                     </Button>
                 </div>
-                <div className="flex gap-2 items-center">
+                <div className="flex gap-2 md:flex-row flex-col md:items-center justify-start mt-2">
                     <Label>{t('category')}</Label>
                     <Select value={category} onValueChange={handleCategoryChange}>
                         <SelectTrigger className="w-[180px]">

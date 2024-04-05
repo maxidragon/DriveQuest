@@ -12,10 +12,10 @@ const QuestionCard = ({question, onAnswerClick}: QuestionCardProps) => {
         <div className="flex flex-col gap-4 items-center">
             <h1>{question.text}</h1>
             <QuestionAsset question={question}/>
-            <div className="flex gap-2 items-center justify-center">
+            <div className="flex gap-2 items-center justify-center flex-wrap">
                 {question.answers.map((answer, index) => (
                     <div key={index}>
-                        <Button onClick={() => onAnswerClick(answer.id)}>{answer.text}</Button>
+                        <Button onClick={() => onAnswerClick(answer.id)} className="text-wrap p-5">{answer.text}</Button>
                     </div>
                 ))}
             </div>

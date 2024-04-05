@@ -47,7 +47,7 @@ const RandomQuestion = () => {
                     {t('incorrect')} {t('correctAnswer')}: {question.answers.find(a => a.isCorrect)?.text}
                 </Alert>
             ))}
-            <Button onClick={fetchData}>{t('nextQuestion')}</Button>
+            <Button onClick={fetchData} variant="secondary">{t('nextQuestion')}</Button>
         </div>
     )
 };

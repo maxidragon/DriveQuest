@@ -23,8 +23,8 @@ export class QuestionService {
       ];
     }
     const questions = await this.prisma.question.findMany({
-      take: 10,
-      skip: (page - 1) * 10,
+      take: 20,
+      skip: (page - 1) * 20,
       where: whereParams,
       select: {
         id: true,
