@@ -93,7 +93,7 @@ export class QuestionService {
   }
 
   async getRandomUnansweredQuestion(userId: string, category: string) {
-    const answeredQuestions = await this.prisma.userAnswer.fireturnndMany({
+    const answeredQuestions = await this.prisma.userAnswer.findMany({
       where: {
         userId,
         answer: {
