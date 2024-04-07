@@ -33,7 +33,8 @@
     "sonner": "^1.4.3",
     "tailwind-merge": "^2.2.2",
     "tailwindcss-animate": "^1.0.7",
-    "video-react": "^0.16.0"
+    "video-react": "^0.16.0",
+    "vite-plugin-pwa": "^0.19.8"
   },
   "devDependencies": {
     "@types/node": "^20.11.28",
