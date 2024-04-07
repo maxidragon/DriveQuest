@@ -3,9 +3,11 @@ import { t } from "i18next";
 import { useNavigate } from "react-router-dom";
 
 import { Button } from "@/components/ui/button.tsx";
+import { isUserLoggedIn } from "@/lib/auth.ts";
 
 const Home = () => {
     const navigate = useNavigate();
+    const isLoggedIn = isUserLoggedIn();
 
     return (
         <div className="flex flex-col gap-2">
@@ -34,7 +36,9 @@ const Home = () => {
                     <div className="space-y-4 md:space-y-0 md:space-x-4 flex flex-col md:flex-row">
                         <Button
                             className="w-full md:w-1/3"
-                            onClick={() => navigate("/auth/register")}
+                            onClick={() =>
+                                navigate(isLoggedIn ? "/exam" : "/auth/login")
+                            }
                         >
                             {t("getStarted")}
                         </Button>
