@@ -44,15 +44,17 @@ const RandomQuestion = () => {
                 question={question}
                 onAnswerClick={handleSubmitAnswer}
             />
-            {isCorrect >= 0 &&
-                (isCorrect === 1 ? (
-                    <Alert variant="default">{t("correct")}</Alert>
-                ) : (
-                    <Alert variant="destructive">
-                        {t("incorrect")} {t("correctAnswer")}:{" "}
-                        {question.answers.find((a) => a.isCorrect)?.text}
-                    </Alert>
-                ))}
+            <div className="w-1/2">
+                {isCorrect >= 0 &&
+                    (isCorrect === 1 ? (
+                        <Alert variant="default">{t("correct")}</Alert>
+                    ) : (
+                        <Alert variant="destructive">
+                            {t("incorrect")} {t("correctAnswer")}:{" "}
+                            {question.answers.find((a) => a.isCorrect)?.text}
+                        </Alert>
+                    ))}
+            </div>
             <Button onClick={fetchData} variant="secondary">
                 {t("nextQuestion")}
             </Button>

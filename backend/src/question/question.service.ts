@@ -26,21 +26,12 @@ export class QuestionService {
       take: 20,
       skip: (page - 1) * 20,
       where: whereParams,
-      select: {
-        id: true,
-        text: true,
+      include: {
         answers: {
-          select: {
-            id: true,
-            text: true,
-            isCorrect: true,
+          include: {
             userAnswers: {
               where: {
                 userId: userId,
-              },
-              select: {
-                id: true,
-                answerId: true,
               },
             },
           },
@@ -78,13 +69,7 @@ export class QuestionService {
         },
       },
       include: {
-        answers: {
-          select: {
-            id: true,
-            text: true,
-            isCorrect: true,
-          },
-        },
+        answers: true,
       },
     });
     return questions.map((question) => ({
@@ -136,13 +121,7 @@ export class QuestionService {
         id: allQuestionIds[randomIndex],
       },
       include: {
-        answers: {
-          select: {
-            id: true,
-            text: true,
-            isCorrect: true,
-          },
-        },
+        answers: true,
       },
     });
     const randomAnswersOrder = question.answers.sort(() => Math.random() - 0.5);
@@ -157,22 +136,12 @@ export class QuestionService {
       where: {
         id: questionId,
       },
-      select: {
-        id: true,
-        assetName: true,
-        text: true,
+      include: {
         answers: {
-          select: {
-            id: true,
-            text: true,
-            isCorrect: true,
+          include: {
             userAnswers: {
               where: {
                 userId: userId,
-              },
-              select: {
-                id: true,
-                answerId: true,
               },
             },
           },
