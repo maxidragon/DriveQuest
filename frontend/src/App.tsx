@@ -4,7 +4,6 @@ import { Toaster } from "@/components/ui/sonner.tsx";
 import Layout from "@/layout/layout.tsx";
 import Login from "@/pages/auth/login/login.tsx";
 import Register from "@/pages/auth/register/register.tsx";
-import Verify from "@/pages/auth/verify/verify.tsx";
 import Exam from "@/pages/exam/exam.tsx";
 import Home from "@/pages/home/home.tsx";
 import Question from "@/pages/question/question.tsx";
@@ -21,10 +20,6 @@ function App() {
         {
             path: "auth/register",
             element: <Register />,
-        },
-        {
-            path: "auth/verify/:id",
-            element: <Verify />,
         },
         {
             path: "/",

@@ -8,28 +8,10 @@ datasource db {
 }
 
 model User {
-  id              String       @id @default(uuid())
-  email           String       @unique
-  emailVerifiedAt DateTime?
-  password        String
-  answers         UserAnswer[]
-  tokens          Token[]
-}
-
-model Token {
-  id      String    @id @default(cuid())
-  userId  String
-  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  type    TokenType
-  token   String    @unique
-  expires DateTime
-
-  @@unique([userId, type])
-}
-
-enum TokenType {
-  VERIFICATION
-  RESET_PASSWORD
+  id       String       @id @default(uuid())
+  email    String       @unique
+  password String
+  answers  UserAnswer[]
 }
 
 model Question {
@@ -53,8 +35,8 @@ model UserAnswer {
   id        String   @id @default(uuid())
   userId    String
   answerId  String
-  user      User     @relation(fields: [userId], references: [id])
-  answer    Answer   @relation(fields: [answerId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  answer    Answer   @relation(fields: [answerId], references: [id])
+  user      User     @relation(fields: [userId], references: [id])
 }

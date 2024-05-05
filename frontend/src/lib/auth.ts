@@ -28,13 +28,6 @@ export const login = async (email: string, password: string) => {
     };
 };
 
-export const verifyEmail = async (token: string) => {
-    const response = await backendRequest("auth/verify", "POST", false, {
-        token: token,
-    });
-    return response.status;
-};
-
 export const getToken = () => {
     return localStorage.getItem(TOKEN_NAME);
 };

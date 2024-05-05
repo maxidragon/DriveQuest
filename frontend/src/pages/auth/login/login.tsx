@@ -27,8 +27,6 @@ const Login = () => {
             if (response.data.token) {
                 toast.success(t("loginSuccess"));
                 navigate("/");
-            } else {
-                toast.info(t("verificationEmailSent"));
             }
         } else if (response.status === 403) {
             toast.error(t("wrongCredentials"));
