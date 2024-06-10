@@ -17,7 +17,7 @@ const QuestionCard = ({ question, onAnswerClick }: QuestionCardProps) => {
                     <div key={index}>
                         <Button
                             onClick={() => onAnswerClick(answer.id)}
-                            className="text-wrap p-5"
+                            className="text-wrap h-fit"
                         >
                             {answer.text}
                         </Button>
