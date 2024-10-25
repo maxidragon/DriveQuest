@@ -32,6 +32,8 @@ const Questions = () => {
     const [category, setCategory] = useAtom(categoryAtom);
     const [questions, setQuestions] = useState<Question[]>([]);
     const [page, setPage] = useState<number>(1);
+    const [count, setCount] = useState<number>(0);
+    const [countAnswered, setCountAnswered] = useState<number>(0);
     const [search, setSearch] = useState<string>("");
     const [totalPages, setTotalPages] = useState<number>(1);
 
@@ -42,6 +44,8 @@ const Questions = () => {
     ) => {
         const data = await getQuestions(pageParam, categoryParam, searchParam);
         setQuestions(data.questions);
+        setCount(data.count);
+        setCountAnswered(data.countAnswered);
         const totalPagesCalculation = calculateTotalPages(data.count, PER_PAGE);
         setTotalPages(totalPagesCalculation);
     };
@@ -107,6 +111,9 @@ const Questions = () => {
                         </SelectContent>
                     </Select>
                 </div>
+            </div>
+            <div className="flex gap-2 mt-2">
+                {t("completedQuestions")} {countAnswered} / {count}
             </div>
             <Table>
                 <TableHeader>

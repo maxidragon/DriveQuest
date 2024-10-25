@@ -41,7 +41,21 @@ export class QuestionService {
     const count = await this.prisma.question.count({
       where: whereParams,
     });
-    return { questions, count };
+    const countAnswered = await this.prisma.question.count({
+      where: {
+        ... whereParams,
+        answers: {
+          some: {
+            userAnswers: {
+              some: {
+                userId: userId,
+              },
+            },
+          },
+        },
+      },
+    });
+    return { questions, count, countAnswered };
   }
 
   async getRandomSet(category: string) {
